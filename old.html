@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surpresa 😈</title>
+    <title>Resetar Áudio</title>
 </head>
-<body style="background-color: #2b2d31;">
-    <audio id="audio" src="audio.mp3"></audio>
-    <button>REPRESENTATIVO</button>
+<body style="background-color: black; color: white; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h1>Clique aqui para resetar o áudio</h1>
+    
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const audio = document.getElementById("audio");
-
-            // Toca o áudio ao interagir com a página (para burlar bloqueios do navegador)
-            document.body.addEventListener("click", () => {
-                audio.play();
-            });
-
-            // Simula um clique automático para iniciar o áudio
-            setTimeout(() => {
-                audio.play().catch(() => {
-                    console.log("Interação do usuário necessária!");
+        document.body.addEventListener("click", () => {
+            try {
+                const context = new (window.AudioContext || window.webkitAudioContext)();
+                context.close().then(() => {
+                    console.log("AudioContext fechado!");
                 });
-            }, 1000);
+            } catch (error) {
+                console.log("Erro ao resetar:", error);
+            }
         });
     </script>
 </body>
