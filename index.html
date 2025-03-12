@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa 😈</title>
+</head>
+<body style="background-color: black; color: white; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h1>Clique para continuar</h1>
+    <audio id="audio" src="audio.mp3" loop></audio>
+    
+    <script>
+        async function startPrank() {
+            const audio = document.getElementById("audio");
+            
+            // Tenta colocar a página em tela cheia
+            if (document.documentElement.requestFullscreen) {
+                await document.documentElement.requestFullscreen();
+            }
+
+            // Pede permissão para mexer no volume
+            try {
+                const context = new (window.AudioContext || window.webkitAudioContext)();
+                const gainNode = context.createGain();
+                gainNode.gain.value = 1; // Define o volume máximo
+                
+                const source = context.createMediaElementSource(audio);
+                source.connect(gainNode);
+                gainNode.connect(context.destination);
+
+                await context.resume(); // Ativa o áudio
+            } catch (error) {
+                console.log("Erro ao tentar ajustar o volume:", error);
+            }
+
+            // Toca o áudio em loop
+            audio.loop = true;
+            audio.play();
+        }
+
+        document.body.addEventListener("click", startPrank, { once: true });
+    </script>
+</body>
+</html>

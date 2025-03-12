@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa 😈</title>
+</head>
+<body style="background-color: #2b2d31;">
+    <audio id="audio" src="audio.mp3"></audio>
+    <button>REPRESENTATIVO</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const audio = document.getElementById("audio");
+
+            // Toca o áudio ao interagir com a página (para burlar bloqueios do navegador)
+            document.body.addEventListener("click", () => {
+                audio.play();
+            });
+
+            // Simula um clique automático para iniciar o áudio
+            setTimeout(() => {
+                audio.play().catch(() => {
+                    console.log("Interação do usuário necessária!");
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
