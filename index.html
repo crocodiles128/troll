@@ -23,7 +23,8 @@
             audio.play();
         }
 
-        document.body.addEventListener("click", startPrank, { once: true });
+        // Inicia o áudio assim que a página for aberta
+        window.addEventListener("load", startPrank);
     </script>
 </body>
 </html>
